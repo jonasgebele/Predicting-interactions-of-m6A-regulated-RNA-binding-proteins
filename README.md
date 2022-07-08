@@ -47,3 +47,19 @@ cat <proteinID> | awk '$3 = $3 + 100 - sprintf("%.0f", (($3 - $2)/2)), $2 = $3 -
 ```console
 sed 's/ /\t/g' bedfile-extended-ranges >  bedfile-extended-ranges
 ```
+
+### Genome Data
+```console
+wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_40/GRCh38.primary_assembly.genome.fa.gz
+gzip -d GRCh38.primary_assembly.genome.fa.gz
+bedtools getfasta -fi GRCh38.primary_assembly.genome.fa -bed bedfile-extended-ranges > sequence-data
+```
+```console
+cat -n sequence-data | sort -uk2 | sort -nk1 | cut -f2- > sequence-data-unique
+```
+Remove duplicate lines from a file assuming you don't mind that lines are sorted.
+
+### Methylation sites
+```console
+bedtools intersect -a parclip_data/sequence-data -b miclip_data/GSE63753_hek293.abcam.CIMS.m6A.9536.bed > sequence-data-intersections
+```
