@@ -1,15 +1,12 @@
 import sys
 
 def getUniqueMethylationSitesFromIntersectionsFileOfProtein(file_path) -> set:
-    # file with intersection with the protein needs to be in the same directory
     file = open(file_path, 'r')
     lines = file.readlines()
-    
     uniqueMethylationSites = set()
     for line in lines:
         line = line.split("\t")
         uniqueMethylationSites.add((str(line[0]), str(line[1]),str(line[8]).rstrip()))
-    
     file.close()
     return uniqueMethylationSites
 
@@ -59,11 +56,10 @@ def createProteinSequenceEncodingAnnotation(file_path, status, encodingCode, cut
                     elif encodingCode == 1:
                         rate = str(int(float("{:.1f}".format(float(methylationSite[2])))*10))
                         # rate = int(rate) if int(rate) >= int(cutoff) else 0
+                        # uncomment for cut-off methylation-rate encoding
                         encoding = encoding[:position-seqBeg] + str(rate) + encoding[position-seqBeg + 1:]
-                        
             encodedSequences.write(line + encoding + "\n")    
             # print(line + encoding, end="\n") - debugging
-    
     encodedSequences.close()
     inputSequences.close()
     return
@@ -76,10 +72,9 @@ def createProteinSequnceEncodingHighMethylationRateOnly(file_path, status, encod
     encodingCode = getEncodingCode(encodingCode)
     methylationRate = 0
     
-    encodedSequences = open("SRR653238_n2_mr.fasta", "w")
+    encodedSequences = open("fileName.fasta", "w")
     inputSequences = open(file_path, 'r')
     lines = inputSequences.readlines()
-    
     output = ""
     
     for line in lines:
@@ -105,28 +100,20 @@ def createProteinSequnceEncodingHighMethylationRateOnly(file_path, status, encod
             if encoding != ("0" * 200):
                 encodedSequences.write(output)
             output = ""
-            
-        
-    
     encodedSequences.close()
     inputSequences.close()
     return
 
 def createProteinSequenceBaseline(file_path, status) -> None:
     label = getStatusCode(status)
-    
     encodedSequences = open("pos_baseline.fasta", "w")
     inputSequences = open(file_path, 'r')
     lines = inputSequences.readlines()
-    
     for line in lines:
         if line[0] == ">":
             encodedSequences.write(">" + str(label) + "\n")
-            # print(">" + str(label), end="\n") - debugging
         else:
             encodedSequences.write(line)    
-            # print(line + encoding, end="\n") - debugging
-    
     encodedSequences.close()
     inputSequences.close()
     return
