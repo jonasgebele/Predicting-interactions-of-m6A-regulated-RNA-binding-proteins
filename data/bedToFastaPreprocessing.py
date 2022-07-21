@@ -119,7 +119,7 @@ def createProteinSequenceBaseline(file_path, status) -> None:
     return
 
 if __name__ == "__main__":
-    bedFile = "bedfile.bed"
+    bedFile = "miclip_data/GSE63753_hek293.abcam.CIMS.m6A.9536.bed.txt" # example bed-file
     intersectionSet = getUniqueMethylationSitesFromIntersectionsFileOfProtein(bedfile)
 
     fastaFile = "fastafile.fasta"
