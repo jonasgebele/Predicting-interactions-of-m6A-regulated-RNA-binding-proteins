@@ -6,7 +6,7 @@ For the protein-RNA interactions we used the pre-processed PAR-CLIP dataset from
 Available in data folder.
 
 ### Generate Positive Samples
-```console
+```
 cat <proteinID> | awk '$3 = $3 + 100 - sprintf("%.0f", (($3 - $2)/2)), $2 = $3 - 200' \
 > bedfile-extended-ranges \
 ```
