@@ -1,0 +1,19 @@
+# TEST ACCURACIES OF DIFFERENT METHYLATION-RATE ENCODINGS
+
+## ONE-HOT ENCODING TEST-ACCURACIES (5 RUNS PER PROTEIN)
+--------------------------------------------------------
+CAPRIN1: [1,2,3,4,5]
+EIF3A: [1,2,3,4,5]
+HNRNPs: [1,2,3,4,5]
+
+## METHYLATION-RATE ENCODING TEST-ACCURACIES (5 RUNS PER PROTEIN)
+-----------------------------------------------------------------
+CAPRIN1: [1,2,3,4,5]
+EIF3A: [1,2,3,4,5]
+HNRNPs: [1,2,3,4,5]
+
+## METHYLATION-RATE WITH CUT-OFF ENCODING TEST-ACCURACIES (5 RUNS PER PROTEIN)
+------------------------------------------------------------------------------
+CAPRIN1:[1,2,3,4,5]
+EIF3A:[1,2,3,4,5]
+HNRNPs:[1,2,3,4,5]
