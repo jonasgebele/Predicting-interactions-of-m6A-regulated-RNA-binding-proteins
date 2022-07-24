@@ -78,7 +78,6 @@ def construct_model():
     
 model = construct_model()
 # model.summary()
-
 history = model.fit(dataset_train, validation_data=dataset_val, epochs = 20)
 
 import matplotlib.pyplot as plt
@@ -87,14 +86,27 @@ plt.plot(history.epoch, history.history['loss'], label = "Train Loss")
 plt.plot(history.epoch, history.history['val_loss'], label = "Validation Loss")
 plt.legend()
 plt.show()
-
 plt.plot(history.epoch, history.history['accuracy'], label = "Train Accuracy")
 plt.plot(history.epoch, history.history['val_accuracy'], label = "Validation Accuracy")
 plt.legend()
 plt.show()
 
-plt.boxplot([history.history['val_accuracy']], labels=["CAPRIN1 (One-Hot encoded Methylationrate)"], vert=False)
-plt.xlabel("Validation Accuracy")
+measurements = []
+
+for _ in range(5):
+  dataset = dataset.shuffle(len(list(dataset)))
+  dataset = dataset.cache()
+  n_samples = [i for i, _ in enumerate(dataset, start=1)][-1]
+  dataset_train = dataset.take(int(n_samples * 0.80))
+  dataset_val = dataset.skip(int(n_samples * 0.80)).take(int(n_samples * 0.1))
+  dataset_test = dataset.skip(int(n_samples * 0.80) + int(n_samples * 0.1))
+  measurements.append(model.evaluate(dataset_test.batch(128))[1])
+
+print(measurements)
+
+plt.boxplot([measurements], labels=["One-Hot"], vert=False)
+plt.xlabel("Test-Accuracy")
 plt.grid(visible=True, axis='x')
 plt.legend()
 plt.show()
+
