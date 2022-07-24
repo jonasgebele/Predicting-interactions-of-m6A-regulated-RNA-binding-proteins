@@ -9,19 +9,19 @@ Available in data folder.
 As a fist step we need to generate positive and negative samples, that we can use as classified inputs to train our model on.
 The positive samples are available in the parclip dataset but we have to extend them to generate sequences with a length of 200 amino acids (AA) as the length of the original bed files would vary.
 ```
-cat <proteinID> | awk '$3 = $3 + 100 - sprintf("%.0f", (($3 - $2)/2)), $2 = $3 - 200' \
-> bedfile-extended-ranges
+cat proteinFile.bed | awk '$3 = $3 + 100 - sprintf("%.0f", (($3 - $2)/2)), $2 = $3 - 200' \
+> proteinFile_extendedSLength.bed
 ```
-Handle tab and whitespace sperator.
+Command to replace the spaces with tabs (Bedtools standard).
 ```
-sed 's/ /\t/g' bedfile-extended-ranges > bedfile-extended-ranges
+sed 's/ /\t/g' proteinFile_extendedSLength.bed > proteinFile_extendedSLength.bed
 ```
-Calculates difference, roundes off, and shifts cromEnd right with [100-difference] and shifts cromStart left starting from cromEnd of -200 to the left.
-This ensures that the sample is centered around the chromStart-chromEnd.
+Dynamically determine the center of the sequence and extend the length from that position in both direction with a length of 100.
+This ensures that the original sequence is centered around the chromStart-chromEnd.
 
 ### Negative Samples 1
 ```
-cat <proteinID> | bedtools slop -i stdin -g XPO5 -l -250 -r 250 | \
+cat <proteinFile> | bedtools slop -i stdin -g XPO5 -l -250 -r 250 | \
 awk '$3 = $3 + 100 - sprintf("%.0f", (($3 - $2)/2)), $2 = $3 - 200' \
 > bedfile-extended-ranges
 ```
