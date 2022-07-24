@@ -1,8 +1,9 @@
 # Predicting Interactions of m6A regulated RNA-Binding Proteins
 
 ## Data Processing
+### PAR-CLIP Data
 For the protein-RNA interactions we used the pre-processed PAR-CLIP dataset from Mukherjee et al. 2019, which analyzed 66 proteins in HEK293 cells. The methylation data came from a miCLIP dataset that has been also done on HEK293 cells
-### Miclip Data
+### MI-CLIP Data
 Available in data folder.
 
 ### Generate Positive Samples
