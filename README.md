@@ -3,8 +3,6 @@
 ## Data Processing
 ### PAR-CLIP Data
 For the protein-RNA interactions we used the pre-processed PAR-CLIP dataset from Mukherjee et al. 2019, which analyzed 66 proteins in HEK293 cells. The methylation data came from a miCLIP dataset that has been also done on HEK293 cells.
-### MI-CLIP Data
-Available in data folder.
 
 ### Generate Positive Samples
 As a fist step we need to generate positive and negative samples, that we can use as classified inputs to train our model on.
@@ -52,11 +50,11 @@ Remove duplicate lines from a file assuming you don't mind that lines are sorted
 ```
 $ cat -n positives.fasta | sort -uk2 | sort -nk1 | cut -f2- > positives.fasta
 ```
-### Genome Data
+### MI-CLIP Data
+Intersections done via our python script instead of with Bedtools in order to improve performance.
 ```
 $ wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_40/GRCh38.primary_assembly.genome.fa.gz
 $ gzip -d GRCh38.primary_assembly.genome.fa.gz
-$ bedtools getfasta -fi GRCh38.primary_assembly.genome.fa -bed positives.bed > positives.fasta
 ```
 ### Generate Data-Set out of MI-CLIP Data and processed PAR-CLIP Data
 Generate labeled and encoded sequence-data out of modified positives, negatives and different encodings.
