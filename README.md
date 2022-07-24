@@ -65,7 +65,8 @@ $ bedtools intersect -a parclip_data/positives.bed \
 > intersections.bed
 ```
 
-### Python
+### Generate Data-Set out of MI-CLIP Data and processed PAR-CLIP
+Generate labeled and encoded sequence-data out of modified positives, negatives and different encodings.
 ```
 $ python bedToFastaPreprocessing.py miclip.bed positives.fasta "positives" "methylationRate" 0
 ```
