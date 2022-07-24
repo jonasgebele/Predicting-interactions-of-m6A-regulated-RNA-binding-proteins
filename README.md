@@ -54,16 +54,11 @@ $ wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_40/GRCh
 $ gzip -d GRCh38.primary_assembly.genome.fa.gz
 $ bedtools getfasta -fi GRCh38.primary_assembly.genome.fa -bed positives.bed > positives.fasta
 ```
+Remove duplicate lines from a file assuming you don't mind that lines are sorted.
 ```
 $ cat -n positives.fasta | sort -uk2 | sort -nk1 | cut -f2- > positives.fasta
 ```
-Remove duplicate lines from a file assuming you don't mind that lines are sorted.
-### Methylation sites
-```
-$ bedtools intersect -a parclip_data/positives.bed \
--b miclip_data/GSE63753_hek293.abcam.CIMS.m6A.9536.bed \
-> intersections.bed
-```
+
 
 ### Generate Data-Set out of MI-CLIP Data and processed PAR-CLIP Data
 Generate labeled and encoded sequence-data out of modified positives, negatives and different encodings.
