@@ -6,6 +6,8 @@ For the protein-RNA interactions we used the pre-processed PAR-CLIP dataset from
 Available in data folder.
 
 ### Generate Positive Samples
+As a fist step we need to generate positive and negative samples, that we can use as classified inputs to train our model on.
+The positive samples are available in the parclip dataset but we have to extend them to generate sequences with a length of 200 amino acids (AA) as the length of the original bed files would vary.
 ```
 cat <proteinID> | awk '$3 = $3 + 100 - sprintf("%.0f", (($3 - $2)/2)), $2 = $3 - 200' \
 > bedfile-extended-ranges
