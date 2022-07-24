@@ -119,11 +119,16 @@ def createProteinSequenceBaseline(file_path, status) -> None:
     return
 
 if __name__ == "__main__":
-    bedFile = "miclip_data/GSE63753_hek293.abcam.CIMS.m6A.9536.bed.txt" # example bed-file
+    # bedFile = "miclip_data/GSE63753_hek293.abcam.CIMS.m6A.9536.bed.txt" # example bed-file
+    bedFile = sys.argv[1]
     intersectionSet = getUniqueMethylationSitesFromIntersectionsFileOfProtein(bedfile)
 
-    fastaFile = "fastafile.fasta"
-    status = "negative"
-    encoding = "methylationRate"
-    cutOff = 0
+    # fastaFile = "fastafile.fasta"
+    fastaFile = sys.argv[2]
+    # status = "negative"
+    status = sys.argv[3]
+    # encoding = "methylationRate"
+    encoding = sys.argv[4]
+    # cutOff = 0
+    cutOff = sys.argv[5]
     createProteinSequnceEncodingHighMethylationRateOnly(fastaFile, status, encoding, cutOff, intersectionSet)
