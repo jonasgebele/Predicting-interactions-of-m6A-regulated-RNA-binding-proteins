@@ -4,6 +4,12 @@
 For the protein-RNA interactions we used the pre-processed PAR-CLIP dataset from Mukherjee et al. 2019, which analyzed 66 proteins in HEK293 cells. The methylation data came from a miCLIP dataset that has been also done on HEK293 cells
 ### Miclip Data
 Available in data folder.
+### Methylation sites
+```
+bedtools intersect -a parclip_data/sequence-data \
+-b miclip_data/GSE63753_hek293.abcam.CIMS.m6A.9536.bed \
+> sequence-data-intersections
+```
 
 ### Generate Positive Samples
 ```
@@ -55,8 +61,3 @@ cat -n sequence-data | sort -uk2 | sort -nk1 | cut -f2- > sequence-data-unique
 ```
 Remove duplicate lines from a file assuming you don't mind that lines are sorted.
 
-### Methylation sites
-```
-bedtools intersect -a parclip_data/sequence-data -b miclip_data/GSE63753_hek293.abcam.CIMS.m6A.9536.bed \
-> sequence-data-intersections
-```
