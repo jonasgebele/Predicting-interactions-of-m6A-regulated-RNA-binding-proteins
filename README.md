@@ -51,11 +51,12 @@ Remove duplicate lines from a file assuming you don't mind that lines are sorted
 $ cat -n positives.fasta | sort -uk2 | sort -nk1 | cut -f2- > positives.fasta
 ```
 ### MI-CLIP Data
-Intersections done via our python script instead of with Bedtools in order to improve performance.
 ```
 $ wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_40/GRCh38.primary_assembly.genome.fa.gz
 $ gzip -d GRCh38.primary_assembly.genome.fa.gz
 ```
+Intersections done via our python script instead of with Bedtools in order to improve performance.
+
 ### Generate Data-Set out of MI-CLIP Data and processed PAR-CLIP Data
 Generate labeled and encoded sequence-data out of modified positives, negatives and different encodings.
 ```
