@@ -48,15 +48,17 @@ $ sed 's/ /\t/g' negativesType2.bed > negativesType2.bed
 ```
 Remove duplicate lines from a file assuming you don't mind that lines are sorted.
 ```
-$ cat -n positives.fasta | sort -uk2 | sort -nk1 | cut -f2- > positives.fasta
+$ cat -n positives.bed| sort -uk2 | sort -nk1 | cut -f2- > positives.fasta
 ```
-### MI-CLIP Data
+### Gencode Data
 ```
 $ wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_40/GRCh38.primary_assembly.genome.fa.gz
 $ gzip -d GRCh38.primary_assembly.genome.fa.gz
 ```
-Intersections done via our python script instead of with Bedtools in order to improve performance.
-
+Intersections done via bedtools.
+```
+$ bedtools getfasta -fi gencode_data/GRCh38.primary_assembly.genome.fa -bed positives.bed > positives.fasta
+```
 ### Generate Data-Set out of MI-CLIP Data and processed PAR-CLIP Data
 Generate labeled and encoded sequence-data out of modified positives, negatives and different encodings.
 ```
