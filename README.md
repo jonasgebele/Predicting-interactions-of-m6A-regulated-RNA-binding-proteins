@@ -1,5 +1,15 @@
 # Predicting Interactions of m6A regulated RNA-Binding Proteins
 
+The rising success of mRNA vaccines has had a major role in showing the importance of chemical
+modifications and how they can influence interactions drastically. We put our focus on a specific
+modification and how it can affect interactions between RNA and proteins. It has been shown for the
+often-occurring m6A modification that it seems to play a part in regulating the interaction between
+RNA and proteins, specifically RNA-binding proteins (RBPs). As this is a well-researched topic, it
+provides us with many crosslinking immunoprecipitation (CLIP) datasets for RBPs binding sites and the
+methylation of those, which we used to train a convolutional neural network (CNN). We then assessed
+different encodings of methylation, models and dataset distribution regarding their predictions on m6A
+regulated RBPs.
+
 ## Data Processing
 ### PAR-CLIP Data
 For the protein-RNA interactions we used the pre-processed PAR-CLIP dataset from Mukherjee et al. 2019, which analyzed 66 proteins in HEK293 cells. The methylation data came from a miCLIP dataset that has been also done on HEK293 cells.
@@ -64,3 +74,6 @@ Generate labeled and encoded sequence-data out of modified positives, negatives 
 ```
 $ python EncodingPreprocessing.py miclip.bed positives.fasta "positives" "methylationRate" 0
 ```
+
+## Network Architecture
+
