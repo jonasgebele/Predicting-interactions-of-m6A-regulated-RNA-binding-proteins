@@ -9,6 +9,8 @@ provides us with many crosslinking immunoprecipitation (CLIP) datasets for RBPs 
 methylation of those, which we used to train a convolutional neural network (CNN). We then assessed
 different encodings of methylation, models and dataset distribution regarding their predictions on m6A
 regulated RBPs.
+![RBP_methylation](https://user-images.githubusercontent.com/41921050/182041627-81cfbd84-915a-4922-bf8d-f140cdb0ef19.png)
+
 
 ## Data Processing
 ### PAR-CLIP Data
