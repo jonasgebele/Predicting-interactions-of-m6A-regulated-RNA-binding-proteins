@@ -78,6 +78,8 @@ $ python EncodingPreprocessing.py miclip.bed positives.fasta "positives" "methyl
 ```
 
 ## Network Architecture
+Our convolutional neural network took a 200x5 matrix as input where 200 was the sequence length representing the number of nucleotides examined combined with the methylation rate encoding at each position. The four base pairs that the sequence is made of are encoded in a four-dimensional identity vector representing a one-hot encoding with a fifth additional dimension for the methylation site encoding.
 ![image](https://user-images.githubusercontent.com/41921050/182041673-99f8467b-1ff8-4a57-8113-4ba017c1cfdf.png)
-
+The first layer can be thought of as a feature scanner of the sequences, which used a kernel size of 8 for the length of the 1D convolution window and 16 filters for the output space. As the second layer, a max-pooling layer was used for each convolution with a pool size of 2, which only outputs the maximum value of all its respective convolutional layer outputs to filter the relevant sequence features.
+This architecture of convolution and max pooling was repeated in three blocks. Regularization with a dropout layer after each convolution layer is being used. After the repeated convolution we flattened the convolution of the kernel tensors into a flat array. This array was then used as input for one fully connected layer of size 64 which condensed the input of the whole sequence feature tensor into 64 outputs.
 
