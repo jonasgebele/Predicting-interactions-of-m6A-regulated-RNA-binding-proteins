@@ -78,5 +78,6 @@ $ python EncodingPreprocessing.py miclip.bed positives.fasta "positives" "methyl
 ```
 
 ## Network Architecture
-![image](https://user-images.githubusercontent.com/41921050/182041604-0c5533ae-9a3e-4a76-ae29-b8c7f3c74aaf.png)
+![image](https://user-images.githubusercontent.com/41921050/182041673-99f8467b-1ff8-4a57-8113-4ba017c1cfdf.png)
+
 
